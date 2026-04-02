@@ -1,0 +1,231 @@
+% ============================================================
+% MCT-L1 SECTION — for inclusion in Visioni et al. GeoMIP7
+% Tier 2 > Process understanding experiments
+% Draft: 30 March 2026 | D. Villanueva et al.
+% ============================================================
+%
+% TABLE ROW (replace placeholder in tab:placeholder):
+%   MCT-L1 & INP seeding poleward of 60$^\circ$ (3 levels + negative batch) & Fixed SST & min 5\,yr \\
+%
+
+\subsubsection{MCT-L1: Mixed-Phase Cloud Thinning experiment}
+\label{sec:mct}
+
+Mixed-Phase Cloud Thinning (MCT) is a proposed radiation
+modification method that exploits the thermodynamic instability of
+mixed-phase clouds — clouds containing supercooled liquid droplets coexisting
+with ice crystals at temperatures between approximately 0 and $-39\,^\circ$C.
+By seeding these clouds with ice-nucleating particles (INPs), liquid droplets
+are converted to ice via heterogeneous freezing, triggering the
+Wegener-Bergeron-Findeisen (WBF) process that further depletes liquid water
+\citep{Villanueva2025Science}.
+The resulting glaciated cloud has a lower optical depth and shorter lifetime,
+reducing its longwave cloud radiative effect; over the polar oceans in winter,
+where mixed-phase clouds exert a net longwave warming that dominates over
+shortwave cooling, MCT thus produces a net surface cooling
+\citep{Villanueva2022ERL}.
+Despite growing interest in MCT as a polar climate intervention, no
+coordinated multi-model protocol had previously been proposed; here we report
+preliminary results from a first multi-model intercomparison effort —
+MCT-MIP Level~0 — and outline the CMIP7-aligned Level~1 protocol (MCT-L1).
+
+\paragraph{Level 0: Exploratory multi-model results.}
+
+The Level~0 protocol was designed to be broadly implementable: atmosphere-only
+simulations with prescribed, fixed sea-surface temperatures and sea-ice
+fractions, perturbing the polar ocean domain (including sea-ice) poleward of 60$^\circ$N and
+60$^\circ$S with spatially uniform, time-constant additions to the background
+dust concentration at three INP levels ($10^4$, $10^5$, and $10^6$\,L$^{-1}$),
+alongside an unperturbed control.
+Simulations used present-day (year 2000; repeating if possible) boundary conditions and ran for a
+minimum of 5 years (2 years for nudged models), with a 1-year spin-up
+discarded for free-running integrations.
+Four models participated (Table~\ref{tab:mct_models}): ECHAM-HAM, ICON-HAM,
+CESM2, and E3SM.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{lll}
+\hline
+                   & \textbf{ECHAM-HAM}               & \textbf{ICON-HAM}               \\
+\hline
+Resolution         & T63 ($\sim$1.875$^\circ$), 96$\times$192  & R2B4 ($\sim$160\,km), 20{,}480 cells  \\
+Vertical levels    & 31                                & 47                              \\
+Grid type          & Gaussian                          & Icosahedral                     \\
+Microphysics       & P3, N12                           & 2-mom., N12 \& L06              \\
+Run length         & 25\,yr (MLO) \& 2\,yr (nudged)    & 5\,yr (nudged)                  \\
+\hline
+                   & \textbf{CESM2}                    & \textbf{E3SM v3}                \\
+\hline
+Resolution         & 0.9$^\circ$, 192$\times$288       & Ne30 ($\sim$1$^\circ$), 21{,}600 cols \\
+Vertical levels    & 32                                & 80                              \\
+Grid type          & Regular lat-lon                   & Cubed-sphere                    \\
+Microphysics       & 2-mom., Wang et al.\ 2014         & P3, Wang et al.\ 2014           \\
+Run length         & 5\,yr                             & 5\,yr                           \\
+\hline
+\end{tabular}
+\caption{Models participating in MCT-MIP Level~0, with their atmospheric grid and run
+configuration. MLO: Mixed-Layer Ocean. N12: \citet{Niemand2012}; L06: \citet{Lohmann2006}.}
+\label{tab:mct_models}
+\end{table}
+
+The spatial distribution of the cloud radiative effect (CRE) response during
+the November--February season (NDJF) is shown in
+Figure~\ref{fig:dcre_maps} for all four models at the mid INP level
+($10^2$\,cm$^{-3}$).
+Three of the four models produce a net cooling with increasing INP
+concentration, consistent with the expected MCT mechanism; E3SM is an outlier,
+showing a warming response.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{../figures/dcre_maps_NDJF.png}
+\caption{Spatial maps of the net cloud radiative effect perturbation
+($\Delta$CRE, W\,m$^{-2}$) during NDJF for the mid INP level
+($10^2$\,cm$^{-3}$) relative to the control simulation, for all four
+MCT-MIP Level~0 models.
+Numbers inset in each panel give the area-weighted mean $\Delta$CRE over
+30--90$^\circ$N, 60--90$^\circ$N, and the outlined target region
+(60--90$^\circ$N, 30$^\circ$W--90$^\circ$E, i.e.\ the North Atlantic--European sector).
+Blue shading indicates cooling; red shading indicates warming.
+ECHAM-HAM, CESM2, and ICON-HAM all produce a net negative $\Delta$CRE
+poleward of 60$^\circ$N, consistent with the MCT mechanism, while E3SM
+shows a widespread warming response driven by a base state dominated by
+very low liquid water content.}
+\label{fig:dcre_maps}
+\end{figure}
+
+The Arctic-mean (60--90$^\circ$N) NDJF responses of CRE, ice water path
+(IWP), liquid water path (LWP), and total water path (TWP; from the
+Cloud\_cci v3 product, \citealt{Stengel2020}) as a function of INP
+concentration are shown in Figure~\ref{fig:arctic_overlay}.
+CESM2 and ICON-HAM show a clear reduction in LWP with increasing INP
+concentration, consistent with the MCT mechanism, while E3SM maintains very
+low LWP across all perturbation levels.
+Note that the ECHAM-HAM (MLO) configuration is shown for reference only;
+this idealized perturbation \citep{Villanueva2022ERL} was designed to maximize
+the droplet freezing rate and is not directly comparable to the
+dust-based INP seeding protocol used by the other simulations.
+
+Investigation of the E3SM case reveals a base state in which cloud ice
+strongly dominates over liquid (Figure~\ref{fig:arctic_overlay}b--c),
+suggesting that clouds in the perturbed domain are already in a
+saturated-ice regime where the WBF process cannot operate effectively and
+additional INPs likely suppress the WBF process even further, by decreasing the
+size of ice particles and slowing down riming and sedimentation.
+This result underlines the importance of constraining the mixed-phase cloud
+liquid/ice partition against observations in future intercomparisons.
+
+The sensitivity of the cooling to INP concentration also varies substantially
+across the three responding models, and the lowest perturbation level
+($10^4$\,L$^{-1}$) already produces a strong response in total water path
+(Figure~\ref{fig:arctic_overlay}c),
+motivating the extension to lower concentrations in the next Level~1 intercomparison.
+
+\begin{figure}[h]
+\centering
+\captionsetup[subfigure]{position=top, singlelinecheck=false}
+% --- top row ---
+\begin{subfigure}[b]{0.48\textwidth}
+  \caption{}
+  \includegraphics[width=\textwidth]{../figures/cre_arctic_NDJF_overlay.png}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \caption{}
+  \includegraphics[width=\textwidth]{../figures/iwp_arctic_NDJF_overlay.png}
+\end{subfigure}\\[0.5em]
+% --- bottom row ---
+\begin{subfigure}[b]{0.48\textwidth}
+  \caption{}
+  \includegraphics[width=\textwidth]{../figures/lwp_arctic_NDJF_overlay.png}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \caption{}
+  \includegraphics[width=\textwidth]{../figures/twp_arctic_NDJF_overlay.png}
+\end{subfigure}
+\caption{Arctic-mean (60--90$^\circ$N) NDJF response as a function of INP
+concentration for all MCT-MIP Level~0 models and configurations.
+(a) Net cloud radiative effect (CRE, W\,m$^{-2}$); the control value is
+shown at the left margin.
+(b) Ice water path (IWP, g\,m$^{-2}$); E3SM's anomalously high and
+monotonically increasing IWP explains its warming CRE response.
+(c) Liquid water path (LWP, g\,m$^{-2}$).
+(d) Total water path (TWP, g\,m$^{-2}$).
+Error bars denote the inter-annual standard error of the mean.}
+\label{fig:arctic_overlay}
+\end{figure}
+
+\paragraph{Level 1 protocol.}
+As in Level~0, MCT-L1 simulations are atmosphere-only with prescribed
+present-day SSTs and sea-ice fractions, with the INP perturbation implemented
+as a transparent addition to background dust (modifying only freezing rates,
+without a new tracer).
+The perturbation range is revised to $10^2$, $10^4$, and
+$10^6$\,L$^{-1}$ to better characterize the onset of the MCT response at low
+concentrations.
+In addition, participating models are encouraged to run a complementary batch
+in which the background INP concentration from the control is multiplied by
+$10^{-2}$, $10^{-4}$, and $10^{-6}$, probing the sensitivity to a lower INP
+mean-state concentration.
+It is expected that such experiments can help clarify how the INP mean-state
+of models affects their MCT response.
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{llll}
+\hline
+\textbf{Group} & \textbf{Simulation} & \textbf{INP perturbation} & \textbf{Type} \\
+\hline
+Control        & CTRL                & none                                      & —              \\
+\hline
+\multirow{3}{*}{MCT-L1-Background}
+               & INP\_low\_back      & CTRL $\times\,10^{-6}$\,L$^{-1}$        & multiplicative \\
+               & INP\_mid\_back      & CTRL $\times\,10^{-4}$\,L$^{-1}$        & multiplicative \\
+               & INP\_high\_back     & CTRL $\times\,10^{-2}$\,L$^{-1}$        & multiplicative \\
+\hline
+\multirow{3}{*}{MCT-L1-Seeding}
+               & INP\_low\_seed      & CTRL $+\,10^{2}$\,L$^{-1}$              & additive       \\
+               & INP\_mid\_seed      & CTRL $+\,10^{4}$\,L$^{-1}$              & additive       \\
+               & INP\_high\_seed     & CTRL $+\,10^{6}$\,L$^{-1}$              & additive       \\
+\hline
+\end{tabular}
+\caption{MCT-L1 simulation matrix (7 simulations total). MCT-L1-Seeding
+perturbations add a spatially uniform INP concentration to the background dust;
+MCT-L1-Background perturbations scale the control background by the given factor.}
+\label{tab:mct_l1_sims}
+\end{table}
+
+The full set of 7 simulations (1 CTRL + 3 MCT-L1-Seeding +
+3 MCT-L1-Background) is designed to map the complete range of
+mixed-phase cloud responses to INP forcing and to reveal base-state biases of
+the kind identified in Level~0.
+
+\paragraph{Required output.}
+Correctly attributing the MCT response requires cloud fields at higher
+temporal resolution than standard monthly means; in particular, monthly-mean
+bulk phase ratios are insufficient to reproduce satellite-based cloud-top
+phase climatologies stratified by temperature.
+In addition to the standard 2D monthly-mean fields from Level~0, the Level~1
+protocol therefore requires:
+\begin{itemize}
+  \item \textbf{Daily sampled instantaneous values} of 2D fields (TOA, ATM,
+        and BOA clear-sky and all-sky radiative fluxes) and 3D cloud fields
+        (cloud water content and particle number for liquid and ice; snow and
+        rain if available);
+  \item \textbf{COSP forward-simulator} output (CALIPSO/ISCCP diagnostics)
+        for direct comparison with satellite cloud-top-phase retrievals;
+  \item \textbf{Glaciation process rates} (daily sampled instantaneous values):
+        at least heterogeneous droplet freezing rate, ice depositional growth
+        rate (WBF), and ice/snow riming rate.
+        Because daily 3D process rates are very expensive to store, we encourage
+        the use of online 2D column-integrated, mixed-phase-integrated, and
+        cloud-top alternatives, which will otherwise be calculated offline.
+\end{itemize}
+
+\paragraph{Nudging.}
+Wind-only nudging to ERA5 reanalysis is strongly encouraged to suppress
+internal variability and enable meaningful multi-model comparison; free-running
+simulations with a minimum of 10 years are an acceptable alternative.
